@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Javascript task
+    </title>
+
+
+
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
+    <script type="text/javascript" src="prettify.js"></script>
+
+    <!-- jQuery includes -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+
+    <script type="text/javascript" src=" http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+    <script src="jquery.jOrgChart.js"></script>
+
+    <script>
+    jQuery(document).ready(function() {
+        $("#org").jOrgChart({
+            chartElement : '#chart',
+            dragAndDrop  : true
+        });
+
+    });
+    </script>
+
+    <style type="text/css">
+
+
+        div.orgChart div.node {
+        height:150px;
+           width:120px;
+
+        }
+
+        .img{
+
+            width:110px;
+            border: 2px solid white;
+            background: white;
+          margin-left: 45px;
+        }
+
+       .dropzones{
+        padding-left: 30px;
+        }
+
+        #dvSource{
+        background: #1abc9c
+            ;
+            width:200px;
+            border:7px solid #e7e7e7;
+            border-radius: 8px;
+        }
+
+
+        #dvSource h3{
+        color:#2c3e50;
+            padding-left: 40px;
+        }
+
+        .jOrgChart .node{
+        background: #1abc9c;
+        }
+    </style>
+
+<script type="text/javascript">
+
+
+
+
+
+
+$ (init);
+function init() {
+    $(".dragzones").draggable({
+        start: handleDragStart,
+        cursor: 'move',
+        revert: 'invalid',
+        opacity: .5,
+    });
+    $(".dropzones").droppable({
+        drop: handleDropEvent,
+        tolerance: "touch",
+        out: handleDropRemove
+    });
+
+
+}
+
+
+
+function handleDragStart (event, ui) {}
+function handleDropRemove(event, ui) {
+        //allows drop after removal
+       $(this).removeClass('taken');
+}
+function handleDropEvent (event, ui) {
+   if ($(this).hasClass('taken')) {
+       //rejects drop if full
+        ui.draggable.draggable('option', 'revert', true);
+    } else {
+        //accepts drop if enpty
+        ui.draggable.position({of: $(this), my: 'left top', at: 'left top'});
+        $(this).addClass('taken');
+   }
+}
+
+</script>
+
+  </head>
+
+  <body style="background: url(images/bg.jpg) no-repeat; width: 100%; height: 150px; background-size: 100%;" onload="prettyPrint();">
+
+    <div class="container">
+        <div class="col-md-10">
+    <ul id="org" style="display:none">
+    <li>
+        <div class="dropzones">President & CEO</div>
+       <ul>
+           <li id="beer"><div class="dropzones">General Auditor</div></li>
+         <li >Vice President
+             <div class="dropzones"></div>
+           <ul>
+             <li>HOD IT Department</li>
+             <li>
+                 <div class="dropzones">HOD medical department</div>
+
+             </li>
+           </ul>
+         </li>
+
+           <li><div class="dropzones">Vice President</div></li>
+         <li class="collapsed"><div class="dropzones">Genral Manager</div>
+           <ul>
+             <li>Manager</li>
+             <li>Manager</li>
+           </ul>
+         </li>
+       </ul>
+     </li>
+   </ul>
+
+    <div id="chart" class="orgChart"></div>
+
+      </div>
+
+    <div class="container col-md-2">
+        <div id="dvSource">
+            <h3>Employees</h3>
+            <div class="dropzones"><div class="dragzones">Adam<br/><img alt="" src="images/img1.jpg"  /></div></div>
+            <div class="dropzones"><div class="dragzones">Vaughan<br/><img alt="" src="images/img2.jpg" /></div></div>
+            <div class="dropzones"><div class="dragzones">Michael Sam<br/><img alt="" src="images/img3.jpg" /></div></div>
+            <div class="dropzones"><div class="dragzones">Srinath<br/><img alt="" src="images/img4.jpg"  /></div></div>
+            <div class="dropzones"><div class="dragzones">McGrath<br/><img alt="" src="images/img2.jpg" /></div></div>
+            <div class="dropzones"><div class="dragzones">Ricky<br/><img alt="" src="images/img2.jpg" /></div></div>
+
+</div>
+        </div>
+
+
+      </div>
+
+     <style type="text/css">
+         img{
+             height:80px;
+             width: 100px;
+         }
+      </style>
+    <script>
+        jQuery(document).ready(function() {
+
+            /* Custom jQuery for the example */
+            $("#show-list").click(function(e){
+                e.preventDefault();
+
+                $('#list-html').toggle('fast', function(){
+                    if($(this).is(':visible')){
+                        $('#show-list').text('Hide underlying list.');
+                        $(".topbar").fadeTo('fast',0.9);
+                    }else{
+                        $('#show-list').text('Show underlying list.');
+                        $(".topbar").fadeTo('fast',1);
+                    }
+                });
+            });
+
+            $('#list-html').text($('#org').html());
+
+            $("#org").bind("DOMSubtreeModified", function() {
+                $('#list-html').text('');
+
+                $('#list-html').text($('#org').html());
+
+                prettyPrint();
+            });
+
+
+
+           $( "#draggable" ).draggable();
+$( "#droppable" ).droppable({
+  drop: function() {
+   $("#draggable").css("top",$( "#droppable" ).css("top"))
+   $("#draggable").css("left",$( "#droppable" ).css("left"))
+
+  }
+});
+
+
+
+
+
+        });
+    </script>
+
+</body>
+</html>
