@@ -1,1 +1,1 @@
-anuj229.github.io
+http://anuj229.github.io
